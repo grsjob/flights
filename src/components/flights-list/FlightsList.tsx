@@ -1,20 +1,18 @@
 import React from "react";
 import FlightItem from "../flight-item/FlightItem";
-import { useStore } from "../../state/storeHooks";
-import { store } from "../../state/store";
-import { setCurrentFlights } from "../../state/slices/flightsSlice";
 import { StyledFlightsList } from "./flightListStyles";
-// interface FlightsListProps {
-//   flights: IFlights;
-// }
-const FlightsList = () => {
-  const {} = useStore(({ flights }) => flights);
-  store.dispatch(setCurrentFlights());
+import { IFlights } from "../../types/flights";
+interface FlightsListProps {
+  flights: IFlights;
+}
+const FlightsList = ({ flights }: FlightsListProps) => {
   return (
     <StyledFlightsList>
-      <li>
-        <FlightItem numberOfFlights={2} />
-      </li>
+      {flights.map((flight) => (
+        <li key={flight.flightToken}>
+          <FlightItem numberOfFlights={flight.flight.legs.length} />
+        </li>
+      ))}
     </StyledFlightsList>
   );
 };
