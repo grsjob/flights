@@ -17,7 +17,7 @@ interface FlightItemOneFlightProps {
   arrivalAirport: string;
   arrivalAirportUid: string;
   arrivalDate: string;
-  duration: number;
+  duration: string;
   carrierCaption: string;
   numberOfTransfers: number;
   oneFlight?: number;
@@ -50,9 +50,9 @@ const FlightItemOneFlight = ({
         </Arrival>
       </Line>
       <Line>
-        <span>{formatDate(departureDate)}</span>
-        <Time>{calcDuration(duration)}</Time>
-        <span>{formatDate(arrivalDate)}</span>
+        <span>{departureDate}</span>
+        <Time>{duration}</Time>
+        <span>{arrivalDate}</span>
       </Line>
       <Transfers>{numberOfTransfers} пересадка</Transfers>
       <Line>Рейс выполняет: {carrierCaption}</Line>
@@ -61,14 +61,3 @@ const FlightItemOneFlight = ({
 };
 
 export default FlightItemOneFlight;
-
-function formatDate(date: string) {
-  const newDate = new Date(date);
-  return newDate.toLocaleString();
-}
-
-function calcDuration(duration: number) {
-  const durationInHours = Math.trunc(duration / 60);
-  const durationInMinute = duration - durationInHours * 60;
-  return `${durationInHours} ч ${durationInMinute} мин`;
-}

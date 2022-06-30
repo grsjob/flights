@@ -6,7 +6,7 @@ export const OneFlight = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
   border-bottom: ${(props) =>
-    props.oneFlight > 1 ? "2px solid blue" : "none"};
+    props.oneFlight > 1 ? "none" : "2px solid blue"};
 `;
 
 export const Line = styled.div`
