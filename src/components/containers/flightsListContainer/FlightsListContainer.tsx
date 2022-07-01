@@ -1,23 +1,26 @@
 import React, { ComponentType } from "react";
 import { useStore } from "../../../state/storeHooks";
 import { IFlights } from "../../../types/flights";
+import FlightsList from "../../flights-list/FlightsList";
 
 interface FlightsListContainerProps {
-  currentFlights: IFlights;
+  flights: IFlights;
 }
 
-const FlightsListContainer = <T extends object>(
+const ContainerWithFlights = <T extends FlightsListContainerProps>(
   Component: ComponentType<T>,
-): React.FC<T & FlightsListContainerProps> => {
+) => {
   const displayName = Component.displayName || Component.name || "Component";
 
-  const ComponentWithFlightsList = (props: T) => {
+  const ComponentWithFlightsList = (
+    props: Omit<T, keyof FlightsListContainerProps>,
+  ) => {
     const { currentFlights } = useStore(({ flights }) => flights);
 
-    return <Component currentFlights={currentFlights} {...(props as T)} />;
+    return <Component flights={currentFlights} {...(props as T)} />;
   };
   ComponentWithFlightsList.displayName = `withFlightsList(${displayName})`;
   return ComponentWithFlightsList;
 };
 
-export default FlightsListContainer;
+export const FlightsListContainer = ContainerWithFlights(FlightsList);
