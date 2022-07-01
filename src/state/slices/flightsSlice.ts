@@ -12,7 +12,7 @@ export interface FlightSliceState {
 
 const initialState: FlightSliceState = {
   flights: flightsArray,
-  currentFlights: [],
+  currentFlights: flightsArray,
 };
 
 const slice = createSlice({

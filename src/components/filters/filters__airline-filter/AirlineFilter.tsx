@@ -1,14 +1,14 @@
 import React, { ChangeEvent } from "react";
 import { StyledAirlineFilter } from "./airLineStyles";
 interface AirlineFilterProps {
-  airlines: string[];
   onChangeAirline: (e: ChangeEvent<HTMLInputElement>) => void;
+  carriers: string[];
 }
-const AirlineFilter = ({ airlines, onChangeAirline }: AirlineFilterProps) => {
+const AirlineFilter = ({ onChangeAirline, carriers }: AirlineFilterProps) => {
   return (
     <StyledAirlineFilter>
       <h4>Авиакомпании</h4>
-      {airlines.map((airline) => (
+      {carriers.map((airline) => (
         <li key={airline}>
           <label>
             <input

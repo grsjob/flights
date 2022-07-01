@@ -3,10 +3,9 @@ import { StyledFilters } from "./filtersStyles";
 import TransferFilter from "./filters__transfer-filter/transfer-filter";
 import SortingFilter from "./filters__sorting/sorting-filter";
 import PriceFilter from "./filters__price/price-filter";
-import AirlineFilter from "./filters__airline-filter/AirlineFilter";
+import { CarriersListContainer } from "../containers/carriersListContainer/CarriersListContainer";
 
 const Filters = () => {
-  const airlines = ["Air France", "KLM", "Аэрофлот - российские авиалинии"];
   return (
     <StyledFilters>
       <li>
@@ -26,7 +25,7 @@ const Filters = () => {
         <PriceFilter setMaximumPrice={max} setMinimumPrice={min} />
       </li>
       <li>
-        <AirlineFilter airlines={airlines} onChangeAirline={printCheckbox} />
+        <CarriersListContainer onChangeAirline={printCheckbox} />
       </li>
     </StyledFilters>
   );
