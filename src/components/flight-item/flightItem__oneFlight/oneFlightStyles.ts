@@ -1,7 +1,7 @@
 import styled from "styled-components";
 const clock = require("../../../assets/img/clock.png");
 
-export const OneFlight = styled.div`
+export const StyledOneFlight = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;

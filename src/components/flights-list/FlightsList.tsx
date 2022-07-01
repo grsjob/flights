@@ -10,7 +10,10 @@ const FlightsList = ({ flights }: FlightsListProps) => {
     <StyledFlightsList>
       {flights.map((flight) => (
         <li key={flight.flightToken}>
-          <FlightItem numberOfFlights={flight.flight.legs.length} />
+          <FlightItem
+            numberOfFlights={flight.flight.legs.length}
+            flight={flight.flight}
+          />
         </li>
       ))}
     </StyledFlightsList>

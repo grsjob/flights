@@ -15,9 +15,9 @@ const ContainerWithFlights = <T extends FlightsListContainerProps>(
   const ComponentWithFlightsList = (
     props: Omit<T, keyof FlightsListContainerProps>,
   ) => {
-    const { currentFlights } = useStore(({ flights }) => flights);
+    const { flights } = useStore(({ flights }) => flights);
 
-    return <Component flights={currentFlights} {...(props as T)} />;
+    return <Component flights={flights} {...(props as T)} />;
   };
   ComponentWithFlightsList.displayName = `withFlightsList(${displayName})`;
   return ComponentWithFlightsList;
