@@ -1,4 +1,4 @@
-import { IFlights } from "../types/flights";
+import { ILegs } from "../types/legs";
 
 export class HelpersService {
   static formatDate(date: string): string {
@@ -11,12 +11,9 @@ export class HelpersService {
     return `${durationInHours} ч ${durationInMinute} мин`;
   }
 
-  static deleteDuplicateFlights(obj: IFlights) {
-    return obj.reduce((prev, item) => {
-      if (!prev.find((v) => v.flightToken === item.flightToken)) {
-        prev.push(item);
-      }
-      return prev;
-    }, []);
+  static getDuration(legs: ILegs[]): number {
+    let duration = 0;
+    legs.map((leg) => (duration += leg.duration));
+    return duration;
   }
 }

@@ -6,7 +6,6 @@ interface FlightsListProps {
   flights: IFlights;
 }
 const FlightsList = ({ flights }: FlightsListProps) => {
-  console.log(flights.length);
   return (
     <StyledFlightsList>
       {flights.map((flight) => (

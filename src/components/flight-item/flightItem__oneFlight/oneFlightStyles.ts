@@ -1,5 +1,4 @@
 import styled from "styled-components";
-const clock = require("../../../assets/img/clock.png");
 
 export const StyledOneFlight = styled.div`
   display: flex;
@@ -42,7 +41,6 @@ export const Time = styled.div`
     position: absolute;
     left: -25px;
     top: 3px;
-    background-image: url(${clock});
     background-size: cover;
   }
 `;

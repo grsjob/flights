@@ -5,7 +5,12 @@ import SortingFilter from "./filters__sorting/sorting-filter";
 import PriceFilter from "./filters__price/price-filter";
 import { CarriersListContainer } from "../containers/carriersListContainer/CarriersListContainer";
 import { store } from "../../state/store";
-import { applyFilters } from "../../state/slices/flightsSlice";
+import {
+  applyFilters,
+  ascendingPriceSorting,
+  byTimeSorting,
+  descendingPriceSorting,
+} from "../../state/slices/flightsSlice";
 import { setCurrentCarriers } from "../../state/slices/carriersSlice";
 import { useFilters } from "../../hooks/useFilters";
 
@@ -50,9 +55,9 @@ const Filters = () => {
     <StyledFilters>
       <li>
         <SortingFilter
-          sortForAscending={() => console.log("сортировка по возрастанию")}
-          sortForDescending={() => console.log("сортировка по убыванию")}
-          sortByTime={() => console.log("сортировка по времени")}
+          sortForAscending={() => store.dispatch(ascendingPriceSorting())}
+          sortForDescending={() => store.dispatch(descendingPriceSorting())}
+          sortByTime={() => store.dispatch(byTimeSorting())}
         />
       </li>
       <li>

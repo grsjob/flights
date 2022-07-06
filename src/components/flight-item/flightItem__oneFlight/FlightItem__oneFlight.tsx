@@ -12,8 +12,8 @@ import { IArrival, IDeparture } from "../FlightItem";
 interface FlightItemOneFlightProps {
   departure: IDeparture;
   arrival: IArrival;
-  duration: string | null;
-  carrierCaption: string | null;
+  duration: string;
+  carrierCaption: string;
   numberOfTransfers: number;
   oneFlight?: number;
 }
