@@ -52,30 +52,32 @@ const Filters = () => {
     }
   }
   return (
-    <StyledFilters>
-      <li>
-        <SortingFilter
-          sortForAscending={() => store.dispatch(ascendingPriceSorting())}
-          sortForDescending={() => store.dispatch(descendingPriceSorting())}
-          sortByTime={() => store.dispatch(byTimeSorting())}
-        />
-      </li>
-      <li>
-        <TransferFilter
-          onChangeForWithoutTransfer={transfersOnChange}
-          onChangeForOneTransfer={transfersOnChange}
-        />
-      </li>
-      <li>
-        <PriceFilter
-          setMaximumPrice={setMaxPrice}
-          setMinimumPrice={setMinPrice}
-        />
-      </li>
-      <li>
-        <CarriersListContainer onChangeAirline={carriersOnChange} />
-      </li>
-    </StyledFilters>
+    <div>
+      <StyledFilters>
+        <li>
+          <SortingFilter
+            sortForAscending={() => store.dispatch(ascendingPriceSorting())}
+            sortForDescending={() => store.dispatch(descendingPriceSorting())}
+            sortByTime={() => store.dispatch(byTimeSorting())}
+          />
+        </li>
+        <li>
+          <TransferFilter
+            onChangeForWithoutTransfer={transfersOnChange}
+            onChangeForOneTransfer={transfersOnChange}
+          />
+        </li>
+        <li>
+          <PriceFilter
+            setMaximumPrice={setMaxPrice}
+            setMinimumPrice={setMinPrice}
+          />
+        </li>
+        <li>
+          <CarriersListContainer onChangeAirline={carriersOnChange} />
+        </li>
+      </StyledFilters>
+    </div>
   );
 };
 
