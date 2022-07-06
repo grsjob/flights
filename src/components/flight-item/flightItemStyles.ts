@@ -16,6 +16,7 @@ export const SelectButton = styled.button`
   text-transform: uppercase;
   font-size: 16px;
   line-height: 24px;
+  margin-bottom: 2%;
   &:active {
     transition: 0.3s all;
     transform: translateY(3px);
