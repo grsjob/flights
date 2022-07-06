@@ -1,8 +1,12 @@
 import { useStore } from "../state/storeHooks";
-import { carriersFilter } from "./filtersCarriersHook";
-import { whithoutTransfers, withTransfers } from "./filtersTransfersHook";
 import { IFlights } from "../types/flights";
-import { HelpersService } from "../services/helpersService";
+import {
+  carriersFilter,
+  chooseRightTransfersFilter,
+  maxPriceFilter,
+  minPriceFilter,
+} from "../components/filters/filters-functions";
+
 interface Filter {
   value: string | string[];
   filterFunc: (arg: string | string[], arg2: IFlights) => IFlights;
@@ -30,47 +34,15 @@ export function useFilters(
       currentFilters[0].value,
       flights,
     );
-    res.push(...firstResult);
-    currentFilters.map((item, index) => {
-      res.push(
-        ...item[index + 1].filterFunc(item[index + 1].value, firstResult),
-      );
-    });
-    return res;
+    let result = firstResult;
+    for (let i = 1; i < currentFilters.length; i++) {
+      result = currentFilters[i].filterFunc(currentFilters[i].value, result);
+    }
+    return result;
   } else {
     currentFilters.map((filter) => {
       res.push(...filter.filterFunc(filter.value, flights));
     });
   }
-  return HelpersService.deleteDuplicateFlights(res);
-}
-
-function maxPriceFilter(maxPrice: string, flights: IFlights) {
-  return flights.filter(
-    (flight) => Number(flight.flight.price.total.amount) <= Number(maxPrice),
-  );
-}
-function minPriceFilter(minPrice: string, flights: IFlights) {
-  return flights.filter(
-    (filter) => Number(filter.flight.price.total.amount) >= Number(minPrice),
-  );
-}
-
-function chooseRightTransfersFilter(
-  transfers: string[],
-  flights: IFlights,
-): IFlights {
-  const res = [];
-  if (
-    transfers.includes("oneTransfer") &&
-    transfers.includes("withoutTransfer")
-  ) {
-    res.push(...withTransfers(flights));
-    res.push(...whithoutTransfers(flights));
-  } else if (transfers.includes("oneTransfer")) {
-    res.push(...withTransfers(flights));
-  } else if (transfers.includes("withoutTransfer")) {
-    res.push(...whithoutTransfers(flights));
-  }
-  return res as IFlights;
+  return res;
 }

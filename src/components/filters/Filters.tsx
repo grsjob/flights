@@ -5,16 +5,7 @@ import SortingFilter from "./filters__sorting/sorting-filter";
 import PriceFilter from "./filters__price/price-filter";
 import { CarriersListContainer } from "../containers/carriersListContainer/CarriersListContainer";
 import { store } from "../../state/store";
-import {
-  applyFilters,
-  initialCurrentFlights,
-} from "../../state/slices/flightsSlice";
-import { useFilterTransfers } from "../../hooks/filtersTransfersHook";
-import {
-  carriersFilter,
-  useCarriersFilter,
-} from "../../hooks/filtersCarriersHook";
-import { HelpersService } from "../../services/helpersService";
+import { applyFilters } from "../../state/slices/flightsSlice";
 import { setCurrentCarriers } from "../../state/slices/carriersSlice";
 import { useFilters } from "../../hooks/useFilters";
 
@@ -23,9 +14,8 @@ const Filters = () => {
   const [transfersState, setTransfersState] = useState<string[]>([]);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-  const flightsAfterTransfersFilter = useFilterTransfers(transfersState);
-  const flightsAfterCarriersFilter = useCarriersFilter(carriersState);
-  const filtersRefults = useFilters(
+
+  const filtersResults = useFilters(
     carriersState,
     transfersState,
     minPrice,
@@ -34,15 +24,7 @@ const Filters = () => {
 
   useEffect(() => {
     store.dispatch(setCurrentCarriers(carriersState));
-    // HelpersService.applyFiltersBySelectedConditions({
-    //   carriersState,
-    //   transfersState,
-    //   flightsAfterCarriersFilter,
-    //   flightsAfterTransfersFilter,
-    //   minPrice,
-    //   maxPrice,
-    // });
-    store.dispatch(applyFilters(filtersRefults));
+    store.dispatch(applyFilters(filtersResults));
   }, [carriersState, transfersState, minPrice, maxPrice]);
 
   function transfersOnChange(e: ChangeEvent<HTMLInputElement>) {
