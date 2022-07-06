@@ -46,7 +46,10 @@ const FlightItemOneFlight = ({
           <Time>{duration}</Time>
           <span>{forwardArrival.arrivalDate}</span>
         </Line>
-        <Transfers>{numberOfTransfers} пересадка</Transfers>
+        <Transfers>
+          {numberOfTransfers}{" "}
+          {numberOfTransfers === 0 ? "пересадок" : "пересадка"}
+        </Transfers>
         <Line>Рейс выполняет: {carrierCaption}</Line>
       </StyledOneFlight>
     );
@@ -68,7 +71,10 @@ const FlightItemOneFlight = ({
           <Time>{duration}</Time>
           <span>{backArrival.arrivalDate}</span>
         </Line>
-        <Transfers>{numberOfTransfers} пересадка</Transfers>
+        <Transfers>
+          {numberOfTransfers}{" "}
+          {numberOfTransfers === 0 ? "пересадок" : "пересадка"}
+        </Transfers>
         <Line>Рейс выполняет: {carrierCaption}</Line>
       </StyledOneFlight>
     );
