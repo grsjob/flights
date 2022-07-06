@@ -1,12 +1,12 @@
 import React, { ChangeEvent } from "react";
 import { StyledCheckboxGroup } from "./transferFilterStyles";
 interface TransferFilterProps {
-  onChangeForOneTrasfer: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChangeForOneTransfer: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeForWithoutTransfer: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const TransferFilter = ({
-  onChangeForOneTrasfer,
+  onChangeForOneTransfer,
   onChangeForWithoutTransfer,
 }: TransferFilterProps) => {
   return (
@@ -16,7 +16,7 @@ const TransferFilter = ({
         <input
           type="checkbox"
           name="oneTransfer"
-          onChange={(e) => onChangeForOneTrasfer(e)}
+          onChange={(e) => onChangeForOneTransfer(e)}
         />
         <label htmlFor="oneTransfer">1 пересадка</label>
       </li>

@@ -1,6 +1,6 @@
 import { IFlights } from "../../types/flights";
 import data from "../../assets/data/flights.json";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // @ts-ignore
 const flightsArray = data.result.flights as IFlights;
@@ -19,19 +19,14 @@ const slice = createSlice({
   name: "flights",
   initialState,
   reducers: {
-    setCurrentFlights: (state) => {
-      const intermediate = state.flights.filter((flights) => {
-        const route = flights.flight.legs.filter(
-          (leg) => leg.segments.length === 2,
-        );
-        if (route.length > 0) return route;
-      });
-      state.currentFlights = state.flights.filter(
-        (flight) => !intermediate.includes(flight),
-      );
+    initialCurrentFlights: (state) => {
+      state.currentFlights = state.flights;
+    },
+    applyFilters: (state, { payload: flights }: PayloadAction<IFlights>) => {
+      state.currentFlights = flights;
     },
   },
 });
 
-export const { setCurrentFlights } = slice.actions;
+export const { applyFilters, initialCurrentFlights } = slice.actions;
 export default slice.reducer;
